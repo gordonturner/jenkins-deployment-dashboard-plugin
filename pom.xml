@@ -194,7 +194,6 @@
 			<artifactId>artifactory-java-client-services</artifactId>
 			<version>${artifactory.client.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.cloudbees.jenkins.plugins</groupId>
 			<artifactId>cloudbees-credentials</artifactId>
@@ -203,7 +202,12 @@
 		<dependency>
 			<groupId>org.jenkins-ci.plugins</groupId>
 			<artifactId>credentials</artifactId>
-			<version>1.16</version>
+			<version>2.1.18</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>matrix-auth</artifactId>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.powermock</groupId>
@@ -256,13 +260,45 @@
 		</dependency>
 		<!-- END Added to satisfy maven-enforcer-plugin -->
 
+		<!-- Added to resolve runtime error, b/c matrix project was moved out of core -->
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>matrix-project</artifactId>
+			<version>1.13</version>
+		</dependency>
+
+    <!-- Added to resolve runtime error, b/c jdk-tool project was moved out of core -->
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>jdk-tool</artifactId>
+      <version>1.2</version>
+		</dependency>
+
+		<!-- Added to resolve runtime error -->
+		<!-- java.lang.NoSuchMethodError: hudson.model.Messages.ExternalJob_DisplayName -->
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>external-monitor-job</artifactId>
+			<version>1.5</version>
+		</dependency>
+
+		<!-- Added to resolve runtime error -->
+		<!-- attempt to register a second PermissionGroup for com.cloudbees.plugins.credentials.CredentialsProvider -->
+		<!-- https://github.com/jenkinsci/jclouds-plugin/releases -->
+		<!-- https://github.com/jenkinsci/jclouds-plugin/blob/master/pom.xml -->
+		<!-- https://wiki.jenkins.io/display/JENKINS/JClouds+Plugin -->
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>jclouds-jenkins</artifactId>
+			<version>2.14</version>
+		</dependency>
+
 	</dependencies>
 
-	<!-- Added Repositories to be able to build project on TravisCI -->
 	<repositories>
 		<repository>
 			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
+			<url>https://repo.jenkins-ci.org/public/</url>
 		</repository>
 		<repository>
 			<id>sonatype-forge</id>
@@ -272,7 +308,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
+			<url>https://repo.jenkins-ci.org/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
 
